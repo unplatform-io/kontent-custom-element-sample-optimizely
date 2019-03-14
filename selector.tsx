@@ -21,6 +21,5 @@ CustomElement.init((element, _context) => {
 
   ReactDom.render(components, document.querySelector('#reactapp'));
 });
-CustomElement.setHeight(200);
 
 

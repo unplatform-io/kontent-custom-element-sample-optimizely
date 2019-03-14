@@ -45,6 +45,16 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount() {
+    this.deferredUpdateSize();
+
+    window.addEventListener('resize', this.updateSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateSize);
+  }
+
   setDisabled = (disabled: boolean) => {
     this.setState(() => ({ disabled }));
   };
@@ -52,7 +62,7 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
   getOptionsFromResponse = (inputValue: string, response: any): IOption[] => {
     const audiences = JSON.parse(response);
 
-    return audiences
+    const options = audiences
       .filter((item) =>
         !item.archived && (!inputValue || (item.name.toLowerCase().indexOf(inputValue) >= 0))
       )
@@ -60,6 +70,8 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
         value: item.id,
         label: item.name
       }));
+
+    return options;
   };
 
   promiseOptions = (inputValue: string): Promise<IOption[]> => {
@@ -84,7 +96,16 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
 
       request.send();
     });
+  };
+
+  deferredUpdateSize = () => {
+    setTimeout(this.updateSize, 10);
   }
+
+  updateSize = () => {
+    const height = document.documentElement.offsetHeight;
+    this.props.customElementApi.setHeight(height);
+  };
 
   onChange = (value: IOption[]) => {
     if (!this.state.disabled) {
@@ -94,6 +115,7 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
       const selectedAudiences = value && value.map(item => ({ id: item.value, name: item.label }));
       const elementValue = selectedAudiences && selectedAudiences.length ? JSON.stringify(selectedAudiences) : null;
       this.props.customElementApi.setValue(elementValue);
+      this.deferredUpdateSize();
     }
   };
 
@@ -104,7 +126,7 @@ class AudiencesSelector extends React.Component<IAudiencesSelectorProps, IAudien
         defaultOptions
         defaultValue={this.state.selectedOptions}
         loadOptions={this.promiseOptions}
-        disabled={this.state.disabled}
+        isDisabled={this.state.disabled}
         onChange={this.onChange}
         classNamePrefix="selector"
       />
