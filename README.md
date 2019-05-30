@@ -26,7 +26,7 @@ Prerequisites:
 git clone https://github.com/Kentico/custom-element-devkit.git
 cd custom-element-devkit
 git clone https://github.com/kenticomartinh/kc-optimizely.git ./client/custom-elements/kc-optimizely
-npm install --save react react-dom
+npm install --save react react-dom@^16.8.6
 npm start -- -hw
 ```
 Browse: https://localhost:3000/custom-elements/kc-optimizely/wrap
