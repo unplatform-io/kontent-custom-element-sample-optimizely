@@ -1,8 +1,8 @@
-# Optimizely audiences selector for Kentico Cloud
+# Optimizely audiences selector for Kentico Kontent
 
 [![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
 
-This repository contains source code of Optimizely audiences selector custom element for Kentico Cloud
+This repository contains the source code for the Optimizely audiences selector custom element for Kentico Kontent.
 
 ## Setup
 
@@ -43,4 +43,4 @@ yarn run start
 
 When you want to build run `yarn build`
 
-![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/cloud-custom-element-sample-optimizely?pixel)
+![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kontent-custom-element-sample-optimizely?pixel)
