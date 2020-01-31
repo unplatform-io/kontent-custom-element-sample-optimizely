@@ -41,6 +41,6 @@ yarn install
 yarn run start
 ```
 
-When you want to build run `yarn build`
+When you're ready to deploy, run the `yarn build` command and deploy the contents of the `build` folder.
 
 ![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kontent-custom-element-sample-optimizely?pixel)
